@@ -4,7 +4,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const apiUrl = process.env.URL_GATEWAY;
+    const apiUrl = process.env.URL_CREDIT_GATEWAY;
     const apiKey = process.env.API_KEY;
 
     if (!apiUrl || !apiKey) {
