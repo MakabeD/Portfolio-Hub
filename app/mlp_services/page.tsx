@@ -43,6 +43,7 @@ export default function Mlpservices() {
                             key={info.id}
                             title={info.tilte}
                             description={info.description}
+                            slug={info.slug}
                         />
                     ))}
                 </div>

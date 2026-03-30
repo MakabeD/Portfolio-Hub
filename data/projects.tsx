@@ -11,6 +11,7 @@ export const projectsData = [
     technologies: ["PyTorch", "FastAPI", "Google Cloud Run", "Docker", "Python"],
     goals: ["Build a robust deep learning API", "Implement secure service-to-service communication", "Achieve sub-100ms inference time"],
   },
+  /*
   {
     id: 2,
     slug: "customer_churn",
@@ -21,4 +22,5 @@ export const projectsData = [
     technologies: ["Scikit-Learn", "Pandas", "XGBoost", "FastAPI"],
     goals: ["Identify at-risk customers", "Reduce monthly churn rate by 5%"],
   }
+  */
 ];
