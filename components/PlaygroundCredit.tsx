@@ -1,9 +1,9 @@
 "use client";
 import { useRef } from "react";
-import { Turnstile } from "@marsidev/react-turnstile";
+import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
 import { useState } from "react";
 export default function PlaygroundCredit() {
-  const turnstileRef = useRef(null);
+  const turnstileRef = useRef<TurnstileInstance | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [result, setResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
