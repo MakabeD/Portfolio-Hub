@@ -17,14 +17,14 @@ export default function PlaygroundCredit() {
   };
 
   const [formData, setFormData] = useState({
-    "Age": 0,
+    "Age": "",
     "Sex": "",
-    "Job": 0,
+    "Job": "",
     "Housing": "",
     "Saving accounts": "NA",
     "Checking account": "NA",
-    "Credit amount": 0,
-    "Duration": 0,
+    "Credit amount": "",
+    "Duration": "",
     "Purpose": ""
   });
 
@@ -38,15 +38,15 @@ export default function PlaygroundCredit() {
       return;
     }
 
-    if (formData.Duration <= 0) {
+    if (formData.Duration=="" || Number(formData.Duration) <= 0) {
       setResult("Error: Duration must be greater than 0.");
       return;
     }
-    if (formData.Age < 18) {
+    if (formData.Age === "" || Number(formData.Age) < 18) {
       setResult("Error: Requester need to be at least 18 years old.");
       return;
     }
-    if (formData["Credit amount"] <= 0) {
+    if (formData["Credit amount"] === "" || Number(formData["Credit amount"]) <= 0) {
       setResult("Error: Credit amount must be greater than 0.");
       return;
     }
@@ -104,7 +104,7 @@ export default function PlaygroundCredit() {
           <input
             type="number"
             name="Age"
-            value={formData.Age}
+            value={formData.Age === "" ? "" : Number(formData.Age)}
             onChange={handleChange}
             min="18"
             max="100"
@@ -207,7 +207,7 @@ export default function PlaygroundCredit() {
             <option value="car">Car</option>
             <option value="domestic appliances">Domestic Appliances</option>
             <option value="education">Education</option>
-            <option value="forniture/equipment">Furniture/Equipment</option>
+            
             <option value="radio/TV">Radio/TV</option>
             <option value="repairs">Repairs</option>
             <option value="vacation/others">Vacation/Others</option>
