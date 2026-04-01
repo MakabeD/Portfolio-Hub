@@ -1,9 +1,10 @@
 "use client";
-
-import { debug, log } from "console";
+import { useRef } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 import { useState } from "react";
 export default function PlaygroundCredit() {
-
+  const turnstileRef = useRef(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [result, setResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const handleChange = (e: any) => {
@@ -29,13 +30,21 @@ export default function PlaygroundCredit() {
 
 
   const triggerRequest = async () => {
+
+    if (!turnstileToken) {
+
+      alert("Please wait until the Turnstile security check is completed before using the playground.")
+
+      return;
+    }
+
     if (formData.Duration <= 0) {
       setResult("Error: Duration must be greater than 0.");
-      return; 
-    } 
+      return;
+    }
     if (formData.Age < 18) {
       setResult("Error: Requester need to be at least 18 years old.");
-      return; 
+      return;
     }
     if (formData["Credit amount"] <= 0) {
       setResult("Error: Credit amount must be greater than 0.");
@@ -55,9 +64,10 @@ export default function PlaygroundCredit() {
 
       const response = await fetch(API, {
         method: "POST",
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ formData, turnstileToken }),
 
       });
+
 
       if (!response.ok) {
         throw new Error(`Server error: ${response.status}`);
@@ -71,6 +81,8 @@ export default function PlaygroundCredit() {
       setResult(`Connection error: ${error.message}`);
     } finally {
       setLoading(false);
+      turnstileRef.current?.reset();
+      setTurnstileToken(null);
     }
   };
 
@@ -86,7 +98,7 @@ export default function PlaygroundCredit() {
         color: 'black'
       }}>
 
-        
+
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Age (18-100)</label>
           <input
@@ -100,7 +112,7 @@ export default function PlaygroundCredit() {
           />
         </div>
 
-        
+
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Sex</label>
           <select name="Sex" value={formData.Sex} onChange={handleChange} style={{ padding: '0.5rem', border: '1px solid gray', borderRadius: '4px' }}>
@@ -110,7 +122,7 @@ export default function PlaygroundCredit() {
           </select>
         </div>
 
-        
+
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Job Category (0-3)</label>
           <input
@@ -124,7 +136,7 @@ export default function PlaygroundCredit() {
           />
         </div>
 
-        
+
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Housing</label>
           <select name="Housing" value={formData.Housing} onChange={handleChange} style={{ padding: '0.5rem', border: '1px solid gray', borderRadius: '4px' }}>
@@ -135,7 +147,7 @@ export default function PlaygroundCredit() {
           </select>
         </div>
 
-        
+
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Saving Accounts</label>
           <select name="Saving accounts" value={formData["Saving accounts"]} onChange={handleChange} style={{ padding: '0.5rem', border: '1px solid gray', borderRadius: '4px' }}>
@@ -147,7 +159,7 @@ export default function PlaygroundCredit() {
           </select>
         </div>
 
-        
+
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Checking Account</label>
           <select name="Checking account" value={formData["Checking account"]} onChange={handleChange} style={{ padding: '0.5rem', border: '1px solid gray', borderRadius: '4px' }}>
@@ -159,7 +171,7 @@ export default function PlaygroundCredit() {
           </select>
         </div>
 
-       
+
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Credit Amount ($)</label>
           <input
@@ -172,7 +184,7 @@ export default function PlaygroundCredit() {
           />
         </div>
 
-        
+
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Duration (Months)</label>
           <input
@@ -186,7 +198,7 @@ export default function PlaygroundCredit() {
           />
         </div>
 
-        
+
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Purpose</label>
           <select name="Purpose" value={formData.Purpose} onChange={handleChange} style={{ padding: '0.5rem', border: '1px solid gray', borderRadius: '4px' }}>
@@ -204,7 +216,15 @@ export default function PlaygroundCredit() {
       </div>
 
       <h3>Playground: Credit Scoring</h3>
-
+      <div className="flex justify-center my-4">
+        <Turnstile
+        ref={turnstileRef}
+          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+          onSuccess={(token) => {
+            setTurnstileToken(token);
+          }}
+        />
+      </div>
       <button
         onClick={triggerRequest}
         disabled={loading}
