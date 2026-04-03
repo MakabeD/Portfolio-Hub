@@ -1,0 +1,5 @@
+@import "tailwindcss";
+:root {
+  --x: 50%;
+  --y: 50%;
+}
