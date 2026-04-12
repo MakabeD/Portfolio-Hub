@@ -44,6 +44,7 @@ export default function FeaturedProjects() {
                 title={project.title}
                 type={project.type}
                 description={project.description_short}
+                technologies={project.technologies}
                 href={`/${project.slug}`}
               />
             </motion.div>
