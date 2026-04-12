@@ -1,12 +1,11 @@
 import Link from "next/link";
 import PlaygroundCard from "@/components/PlaygroundCard";
-import { projectsData } from "../../data/projects";
-import { playgroundsData } from "../../data/playgrounds";
+import { projectsData } from "../../../data/projects";
+import { mlp_playgroundsData } from "../../../data/mlp_playgrounds";
 
 export default function Mlpservices() {
   const project = projectsData.find((p) => p.slug === "mlp_services");
 
- 
   if (!project) {
     return (
       <main className="flex min-h-screen items-center justify-center bg-zinc-950">
@@ -19,10 +18,7 @@ export default function Mlpservices() {
 
   return (
     <main className="min-h-screen bg-zinc-950 px-6 py-24">
-      
       <div className="mx-auto max-w-5xl">
-        
-        
         <div className="mb-12">
           <h1 className="mb-6 text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-100">
             {project.title}
@@ -32,13 +28,11 @@ export default function Mlpservices() {
           </p>
         </div>
 
-        
         <div className="mb-16 rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 shadow-lg">
           <h3 className="mb-4 text-sm font-mono font-semibold uppercase tracking-wider text-zinc-500">
             Technologies & Stack
           </h3>
-          
-          
+
           <ul className="flex flex-wrap gap-3 m-0 p-0">
             {project.technologies.map((tech, index) => (
               <li
@@ -52,15 +46,13 @@ export default function Mlpservices() {
           </ul>
         </div>
 
-        
         <div className="mt-12">
           <h2 className="mb-8 border-b border-zinc-800 pb-4 text-2xl font-bold tracking-tight text-zinc-100">
             Our services (Playgrounds)
           </h2>
-          
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {playgroundsData.map((info) => (
+            {mlp_playgroundsData.map((info) => (
               <PlaygroundCard
                 key={info.id}
                 title={info.title}
@@ -70,7 +62,6 @@ export default function Mlpservices() {
             ))}
           </div>
         </div>
-
       </div>
     </main>
   );
