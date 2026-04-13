@@ -39,23 +39,23 @@ export default function PlaygroundChurn() {
 
   const fillRandomData = () => {
     setFormData({
-      Accountlength: Math.floor(Math.random() * 200) + 1,
+      Accountlength: String(Math.floor(Math.random() * 200) + 1),
       International_plan: Math.random() > 0.5 ? "Yes" : "No",
       Voice_mail_plan: Math.random() > 0.5 ? "Yes" : "No",
-      Number_vmail_messages: Math.floor(Math.random() * 50),
+      Number_vmail_messages: String(Math.floor(Math.random() * 50)),
       Total_day_minutes: (Math.random() * 300 + 50).toFixed(1),
-      Total_day_calls: Math.floor(Math.random() * 150) + 20,
+      Total_day_calls: String(Math.floor(Math.random() * 150) + 20),
       Total_day_charge: (Math.random() * 50 + 10).toFixed(2),
       Total_eve_minutes: (Math.random() * 350 + 50).toFixed(1),
-      Total_eve_calls: Math.floor(Math.random() * 120) + 30,
+      Total_eve_calls: String(Math.floor(Math.random() * 120) + 30),
       Total_eve_charge: (Math.random() * 30 + 10).toFixed(2),
       Total_night_minutes: (Math.random() * 300 + 50).toFixed(1),
-      Total_night_calls: Math.floor(Math.random() * 120) + 30,
+      Total_night_calls: String(Math.floor(Math.random() * 120) + 30),
       Total_night_charge: (Math.random() * 15 + 5).toFixed(2),
       Total_intl_minutes: (Math.random() * 20 + 1).toFixed(1),
-      Total_intl_calls: Math.floor(Math.random() * 15) + 1,
+      Total_intl_calls: String(Math.floor(Math.random() * 15) + 1),
       Total_intl_charge: (Math.random() * 5 + 0.5).toFixed(2),
-      Customer_service_calls: Math.floor(Math.random() * 5) + 1,
+      Customer_service_calls: String(Math.floor(Math.random() * 5) + 1),
     });
 
     // Reset Turnstile token so user can verify again
