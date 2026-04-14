@@ -23,7 +23,7 @@ export default function PlaygroundCredit() {
     const value = e.target.value;
     setFormData((prev) => ({
       ...prev,
-      Job: value === "" ? "" : Number(value),
+      Job: value,
     }));
   };
 
