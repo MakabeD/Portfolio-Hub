@@ -53,7 +53,6 @@ export default function Contact() {
           </Link>
         </motion.div>
 
-        {/* Social Links */}
         <motion.div
           className="flex items-center justify-center gap-6"
           initial={{ opacity: 0 }}
@@ -103,7 +102,6 @@ export default function Contact() {
         </motion.div>
       </motion.div>
 
-      {/* Footer */}
       <motion.div
         className="mx-auto mt-24 max-w-4xl border-t border-zinc-800 pt-8 text-center text-sm text-zinc-500"
         initial={{ opacity: 0 }}

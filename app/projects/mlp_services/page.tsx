@@ -19,6 +19,29 @@ export default function Mlpservices() {
   return (
     <main className="min-h-screen bg-zinc-950 px-6 py-24">
       <div className="mx-auto max-w-5xl">
+        {/* Back to Projects */}
+        <div className="mb-8">
+          <Link
+            href="/projects"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-zinc-400 transition-colors duration-300 hover:text-zinc-100"
+          >
+            <svg
+              className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M7 16l-4-4m0 0l4-4m-4 4h18"
+              />
+            </svg>
+            Back to Projects
+          </Link>
+        </div>
+
         <div className="mb-12">
           <h1 className="mb-6 text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-100">
             {project.title}

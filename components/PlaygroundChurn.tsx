@@ -58,7 +58,6 @@ export default function PlaygroundChurn() {
       Customer_service_calls: String(Math.floor(Math.random() * 5) + 1),
     });
 
-    // Reset Turnstile token so user can verify again
     turnstileRef.current?.reset();
     setTurnstileToken(null);
     setResult(null);
@@ -67,12 +66,11 @@ export default function PlaygroundChurn() {
   const triggerRequest = async () => {
     if (!turnstileToken) {
       alert(
-        "Please wait until the Turnstile security check is completed before using the playground."
+        "Please wait until the Turnstile security check is completed before using the playground.",
       );
       return;
     }
 
-    // Validate required numeric fields
     const numericFields = [
       "Accountlength",
       "Number_vmail_messages",
@@ -102,9 +100,10 @@ export default function PlaygroundChurn() {
       }
     }
 
-    // Validate required dropdowns
     if (!formData.International_plan || !formData.Voice_mail_plan) {
-      setResult("Error: Please select options for International and Voice Mail plans.");
+      setResult(
+        "Error: Please select options for International and Voice Mail plans.",
+      );
       return;
     }
 
@@ -184,7 +183,6 @@ export default function PlaygroundChurn() {
           </h3>
         </div>
 
-        {/* Random Fill Button */}
         <div className="mb-6 flex justify-end">
           <button
             onClick={fillRandomData}
@@ -214,7 +212,6 @@ export default function PlaygroundChurn() {
           </button>
         </div>
 
-        {/* Account Information Section */}
         <div className="mb-6">
           <h4 className="mb-4 text-sm font-semibold text-violet-400 border-b border-zinc-800 pb-2">
             Account Information
@@ -290,7 +287,6 @@ export default function PlaygroundChurn() {
           </div>
         </div>
 
-        {/* Day Usage Section */}
         <div className="mb-6">
           <h4 className="mb-4 text-sm font-semibold text-cyan-400 border-b border-zinc-800 pb-2">
             Day Usage
@@ -339,7 +335,6 @@ export default function PlaygroundChurn() {
           </div>
         </div>
 
-        {/* Evening Usage Section */}
         <div className="mb-6">
           <h4 className="mb-4 text-sm font-semibold text-emerald-400 border-b border-zinc-800 pb-2">
             Evening Usage
@@ -388,7 +383,6 @@ export default function PlaygroundChurn() {
           </div>
         </div>
 
-        {/* Night Usage Section */}
         <div className="mb-6">
           <h4 className="mb-4 text-sm font-semibold text-amber-400 border-b border-zinc-800 pb-2">
             Night Usage
@@ -437,7 +431,6 @@ export default function PlaygroundChurn() {
           </div>
         </div>
 
-        {/* International Usage Section */}
         <div className="mb-8">
           <h4 className="mb-4 text-sm font-semibold text-rose-400 border-b border-zinc-800 pb-2">
             International Usage
@@ -486,7 +479,6 @@ export default function PlaygroundChurn() {
           </div>
         </div>
 
-        {/* Turnstile & Submit Button */}
         <div className="mt-10 flex flex-col items-center justify-between gap-6 border-t border-zinc-700/50 pt-8 md:flex-row">
           <div className="flex justify-center bg-zinc-950 p-2 rounded-lg border border-zinc-800">
             <Turnstile
@@ -510,7 +502,6 @@ export default function PlaygroundChurn() {
         </div>
       </div>
 
-      {/* Output Terminal */}
       {result && (
         <div className="mx-auto mt-6 w-full max-w-5xl overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl">
           <div className="border-b border-zinc-800 bg-zinc-900 px-4 py-2">
