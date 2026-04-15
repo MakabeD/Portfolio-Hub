@@ -4,40 +4,62 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 
+// Tech icons from react-icons
+import {
+  SiPython,
+  SiTypescript,
+  SiJavascript,
+  SiPytorch,
+  SiScikitlearn,
+  SiPandas,
+  SiGooglecloud,
+  SiDocker,
+  SiMlflow,
+  SiGit,
+  SiDvc,
+  SiFastapi,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiPydantic,
+  SiNumpy,
+} from "react-icons/si";
+
 const skills = [
   {
     category: "Languages",
     items: [
-      { name: "Python", icon: "🐍" },
-      { name: "TypeScript", icon: "📘" },
-      { name: "JavaScript", icon: "💛" },
+      { name: "Python", icon: <SiPython className="h-4 w-4" /> },
+      { name: "TypeScript", icon: <SiTypescript className="h-4 w-4" /> },
+      { name: "JavaScript", icon: <SiJavascript className="h-4 w-4" /> },
     ],
   },
   {
     category: "AI, Data & Deep Learning",
     items: [
-      { name: "PyTorch", icon: "🔥" },
-      { name: "Scikit-Learn", icon: "🧠" },
-      { name: "Pandas & NumPy", icon: "🐼" },
-      { name: "Matplotlib/Seaborn", icon: "📊" },
+      { name: "PyTorch", icon: <SiPytorch className="h-4 w-4" /> },
+      { name: "Scikit-Learn", icon: <SiScikitlearn className="h-4 w-4" /> },
+      { name: "Pandas", icon: <SiPandas className="h-4 w-4" /> },
+      { name: "NumPy", icon: <SiNumpy className="h-4 w-4" /> },
+      { name: "Matplotlib/Seaborn", icon: <SiPandas className="h-4 w-4" /> },
     ],
   },
   {
     category: "MLOps & Cloud",
     items: [
-      { name: "Google Cloud", icon: "☁️" },
-      { name: "Docker", icon: "🐳" },
-      { name: "MLflow", icon: "📈" },
-      { name: "DVC & Git", icon: "🔄" },
+      { name: "Google Cloud", icon: <SiGooglecloud className="h-4 w-4" /> },
+      { name: "Docker", icon: <SiDocker className="h-4 w-4" /> },
+      { name: "MLflow", icon: <SiMlflow className="h-4 w-4" /> },
+      { name: "DVC", icon: <SiDvc className="h-4 w-4" /> },
+      { name: "Git", icon: <SiGit className="h-4 w-4" /> },
     ],
   },
   {
     category: "Web & APIs",
     items: [
-      { name: "FastAPI", icon: "⚡" },
-      { name: "Next.js / React", icon: "⚛️" },
-      { name: "Tailwind CSS", icon: "🎨" },
-      { name: "Pydantic", icon: "🛡️" },
+      { name: "FastAPI", icon: <SiFastapi className="h-4 w-4" /> },
+      { name: "Next.js / React", icon: <SiNextdotjs className="h-4 w-4" /> },
+      { name: "Tailwind CSS", icon: <SiTailwindcss className="h-4 w-4" /> },
+      { name: "Pydantic", icon: <SiPydantic className="h-4 w-4" /> },
     ],
   },
 ];
@@ -90,9 +112,11 @@ export default function Skills() {
                         delay: groupIndex * 0.15 + skillIndex * 0.1 + 0.2,
                         duration: 0.4,
                       }}
-                      className="flex items-center gap-2 text-sm text-zinc-400"
+                      className="flex items-center gap-2.5 text-sm text-zinc-400"
                     >
-                      <span className="text-lg">{skill.icon}</span>
+                      <span className="text-zinc-300 transition-colors group-hover:text-zinc-100">
+                        {skill.icon}
+                      </span>
                       <span>{skill.name}</span>
                     </motion.div>
                   ))}
