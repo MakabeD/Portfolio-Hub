@@ -160,7 +160,7 @@ export default function PlaygroundCredit() {
                   d="M7 16l-4-4m0 0l4-4m-4 4h18"
                 />
               </svg>
-              Back to Projects
+              Back to Services
             </Link>
           </div>
           <h3 className="font-mono text-lg font-bold tracking-widest text-zinc-300 uppercase">
