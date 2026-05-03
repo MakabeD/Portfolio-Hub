@@ -60,7 +60,7 @@ export default function Mlpservices() {
               <li
                 key={index}
                 className="list-none rounded-full border border-zinc-700 bg-zinc-800/50 px-4 py-1.5 text-sm font-mono
-                text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-zinc-100"
+                text-zinc-300 transition-colors  "
               >
                 {tech}
               </li>
