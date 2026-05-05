@@ -1,15 +1,22 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
 import Link from "next/link";
 
 export default function PlaygroundCredit() {
   const turnstileRef = useRef<TurnstileInstance | null>(null);
+  const resultRef = useRef<HTMLDivElement | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [result, setResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [showTooltip, setShowTooltip] = useState<string | null>(null);
   const [showWarning, setShowWarning] = useState(false);
+
+  useEffect(() => {
+    if (result && resultRef.current) {
+      resultRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [result]);
 
   const handleChange = (e: any) => {
     const { name, value, type } = e.target;
@@ -475,7 +482,7 @@ export default function PlaygroundCredit() {
       </div>
 
       {result && (
-        <div className="mx-auto mt-6 w-full max-w-4xl overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl">
+        <div ref={resultRef} className="mx-auto mt-6 w-full max-w-4xl overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl">
           <div className="border-b border-zinc-800 bg-zinc-900 px-4 py-2">
             <span className="font-mono text-xs text-zinc-500">
               Output Terminal
