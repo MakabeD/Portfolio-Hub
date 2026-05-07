@@ -48,18 +48,27 @@ export async function POST(request: Request) {
       );
     }
 
-    const cloudResponse = await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-      },
-      body: JSON.stringify(body.formData),
-    });
+    const makeCloudRequest = async () => {
+      const cloudResponse = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": apiKey,
+        },
+        body: JSON.stringify(body.formData),
+      });
+      const data = await cloudResponse.json();
+      return { data, status: cloudResponse.status };
+    };
 
-    const data = await cloudResponse.json();
+    let result = await makeCloudRequest();
 
-    return NextResponse.json(data, { status: cloudResponse.status });
+    if (result.status === 500) {
+      console.warn("Server returned 500, retrying...");
+      result = await makeCloudRequest();
+    }
+
+    return NextResponse.json(result.data, { status: result.status });
   } catch (error) {
     console.error("Proxy error:", error);
     return NextResponse.json(
