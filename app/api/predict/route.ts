@@ -1,5 +1,19 @@
 import { NextResponse } from "next/server";
 
+async function fetchWithTimeout(
+  url: string,
+  options: RequestInit,
+  timeoutMs = 25000,
+) {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } finally {
+    clearTimeout(id);
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -48,27 +62,43 @@ export async function POST(request: Request) {
       );
     }
 
-    const makeCloudRequest = async () => {
-      const cloudResponse = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": apiKey,
-        },
-        body: JSON.stringify(body.formData),
-      });
-      const data = await cloudResponse.json();
-      return { data, status: cloudResponse.status };
-    };
+    const maxAttempts = 3;
 
-    let result = await makeCloudRequest();
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      try {
+        const cloudResponse = await fetchWithTimeout(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": apiKey,
+          },
+          body: JSON.stringify(body.formData),
+        }, 30000);
+        const data = await cloudResponse.json();
 
-    if (result.status === 500) {
-      console.warn("Server returned 500, retrying...");
-      result = await makeCloudRequest();
+        if (cloudResponse.status !== 500 || attempt === maxAttempts) {
+          return NextResponse.json(data, { status: cloudResponse.status });
+        }
+
+        console.warn(
+          `Cloud gateway returned 500 (attempt ${attempt}/${maxAttempts})`,
+        );
+      } catch (innerError) {
+        if (attempt === maxAttempts) {
+          console.error("Cloud gateway error:", innerError);
+          return NextResponse.json(
+            { error: "Communication internal error" },
+            { status: 500 },
+          );
+        }
+        console.warn(
+          `Cloud gateway connection failed (attempt ${attempt}/${maxAttempts}):`,
+          innerError,
+        );
+      }
+
+      await new Promise((r) => setTimeout(r, 3000));
     }
-
-    return NextResponse.json(result.data, { status: result.status });
   } catch (error) {
     console.error("Proxy error:", error);
     return NextResponse.json(
