@@ -17,7 +17,7 @@ export default function About() {
         transition={{ duration: 0.8 }}
       >
         <div className="mb-12">
-          <h2 className="mb-2 font-mono text-sm tracking-widest text-violet-400">
+          <h2 className="mb-2 font-mono text-sm tracking-widest text-slate-400">
             ABOUT ME
           </h2>
           <h3 className="text-3xl font-bold text-zinc-100 md:text-4xl">
@@ -55,19 +55,19 @@ export default function About() {
               </h4>
               <ul className="space-y-2 text-sm text-zinc-400">
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
                   Deep Learning & Neural Networks
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
                   Cloud Architecture & Deployment
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
                   API Design & Microservices
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
                   Software Engineering Best Practices
                 </li>
               </ul>

@@ -21,7 +21,7 @@ export default function Contact() {
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="mb-4 font-mono text-sm tracking-widest text-violet-400">
+        <h2 className="mb-4 font-mono text-sm tracking-widest text-slate-400">
           GET IN TOUCH
         </h2>
         <h3 className="mb-6 text-3xl font-bold text-zinc-100 md:text-5xl">
@@ -41,7 +41,7 @@ export default function Contact() {
         >
           <a
             href="mailto:danielcoc356@gmail.com"
-            className="rounded-full bg-violet-600 px-8 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-violet-500 hover:shadow-lg hover:shadow-violet-500/30"
+            className="rounded-full bg-slate-700 px-8 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-slate-600 hover:shadow-lg hover:shadow-slate-500/20"
           >
             Say Hello
           </a>

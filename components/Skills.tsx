@@ -80,7 +80,7 @@ export default function Skills() {
         transition={{ duration: 0.8 }}
       >
         <div className="mb-12 text-center">
-          <h2 className="mb-2 font-mono text-sm tracking-widest text-violet-400">
+          <h2 className="mb-2 font-mono text-sm tracking-widest text-slate-400">
             TECH STACK
           </h2>
           <h3 className="text-3xl font-bold text-zinc-100 md:text-4xl">

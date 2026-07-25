@@ -5,8 +5,6 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import ProjectCard from "./ProjectCard";
 import { projectsData } from "../data/projects";
-import Link from "next/link";
-
 export default function FeaturedProjects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -20,7 +18,7 @@ export default function FeaturedProjects() {
         transition={{ duration: 0.8 }}
       >
         <div className="mb-12">
-          <h2 className="mb-2 font-mono text-sm tracking-widest text-violet-400">
+          <h2 className="mb-2 font-mono text-sm tracking-widest text-slate-400">
             FEATURED WORK
           </h2>
           <h3 className="text-3xl font-bold text-zinc-100 md:text-4xl">

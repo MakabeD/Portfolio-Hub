@@ -6,8 +6,6 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-zinc-950 px-6">
-      <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 via-transparent to-cyan-500/10" />
-
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -15,7 +13,7 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
         >
           <motion.p
-            className="mb-4 font-mono text-sm tracking-widest text-violet-400"
+            className="mb-4 font-mono text-sm tracking-widest text-slate-400"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
@@ -29,10 +27,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            Daniel{" "}
-            <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
-              Yepes Molina
-            </span>
+            Daniel Yepes Molina
           </motion.h1>
 
           <motion.p
@@ -53,7 +48,7 @@ export default function Hero() {
           >
             <a
               href="#projects"
-              className="rounded-full bg-violet-600 px-8 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-violet-500 hover:shadow-lg hover:shadow-violet-500/30"
+              className="rounded-full bg-slate-700 px-8 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-slate-600 hover:shadow-lg hover:shadow-slate-500/20"
             >
               View My Work
             </a>

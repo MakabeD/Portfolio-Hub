@@ -55,14 +55,14 @@ export default function ProjectCard({
       <article
         ref={cardRef}
         onMouseMove={handleMouseMove}
-        className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 shadow-xl transition-all duration-300 hover:border-zinc-600 hover:shadow-2xl hover:shadow-violet-500/5"
+        className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 shadow-xl transition-all duration-300 hover:border-zinc-600 hover:shadow-2xl hover:shadow-slate-500/5"
       >
         <div
           className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           style={{
             background: `radial-gradient(
               600px circle at var(--x, 50%) var(--y, 50%),
-              rgba(139,92,246,0.15),
+              rgba(100,116,139,0.15),
               transparent 40%
             )`,
           }}
@@ -78,7 +78,7 @@ export default function ProjectCard({
             </span>
           </div>
 
-          <h3 className="text-xl font-bold tracking-tight text-zinc-100 transition-colors duration-300 group-hover:text-violet-300">
+          <h3 className="text-xl font-bold tracking-tight text-zinc-100 transition-colors duration-300 group-hover:text-slate-300">
             {title}
           </h3>
 
@@ -90,7 +90,7 @@ export default function ProjectCard({
             {displayTech.map((tech) => (
               <span
                 key={tech}
-                className="rounded-md bg-violet-500/10 px-2.5 py-1 text-xs font-medium text-violet-300 ring-1 ring-violet-500/20"
+                className="rounded-md bg-slate-500/10 px-2.5 py-1 text-xs font-medium text-slate-300 ring-1 ring-slate-500/20"
               >
                 {tech}
               </span>
@@ -102,7 +102,7 @@ export default function ProjectCard({
             )}
           </div>
 
-          <div className="flex items-center gap-1 text-sm font-medium text-zinc-500 transition-colors duration-300 group-hover:text-violet-400">
+          <div className="flex items-center gap-1 text-sm font-medium text-zinc-500 transition-colors duration-300 group-hover:text-slate-400">
             <span>View Details</span>
             <svg
               className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
